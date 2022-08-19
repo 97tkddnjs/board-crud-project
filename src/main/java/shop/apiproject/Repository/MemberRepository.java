@@ -1,6 +1,6 @@
-package shop.Repository;
+package shop.apiproject.Repository;
 
-import shop.dto.Member;
+import shop.apiproject.dto.Member;
 
 import java.util.List;
 
@@ -9,5 +9,5 @@ public interface MemberRepository {
 
     public Member findById(Long id);
 
-    public List<Member> findAll();
+    public List<Member> findAll(); // 모든 회원 찾기
 }

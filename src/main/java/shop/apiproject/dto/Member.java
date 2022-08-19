@@ -1,4 +1,4 @@
-package shop.dto;
+package shop.apiproject.dto;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 
