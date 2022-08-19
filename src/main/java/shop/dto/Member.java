@@ -8,7 +8,7 @@ public class Member {
     private int num;
 
     @NotEmpty
-    private Long id; // 사용자 id
+    private String id; // 사용자 id
 
     @NotEmpty
     private String pass; // 사용자 비번
