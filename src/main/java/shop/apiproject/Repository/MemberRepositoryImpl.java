@@ -27,8 +27,11 @@ public class MemberRepositoryImpl implements MemberRepository{
 
     @Override
     public Member save(Member member) {
+
         System.out.println("here");
+
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+
         jdbcInsert.withTableName("member").usingGeneratedKeyColumns("num");
 
         Map<String, Object> parameters = new HashMap<>();
@@ -42,9 +45,9 @@ public class MemberRepositoryImpl implements MemberRepository{
         Number num = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
         System.out.println("num = " + num);
         member.setNum(num.intValue());
+
         return member;
 
-        //return null;
     }
 
     @Override

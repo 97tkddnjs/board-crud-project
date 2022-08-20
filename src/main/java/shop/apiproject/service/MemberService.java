@@ -31,4 +31,6 @@ public class MemberService {
         this.memberRepository.save(member);
     }
 
+
+
 }
