@@ -8,7 +8,5 @@
 RestController을 이용 API 프로젝트를 완성할 예정입니다.
 
 ## ERD
-![ERD](게시판 프로젝트.PNG)
 
-
-
+![게시판 프로젝트](https://user-images.githubusercontent.com/46413809/185789863-c8f73e4b-2a26-455d-a74a-2d7a754f9a1b.PNG)
