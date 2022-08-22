@@ -13,6 +13,8 @@ public class Comments {
 
     private String id;      //fk
 
+    private String comments;
+
     private LocalDateTime date;
 
     private int comments_empathy;
