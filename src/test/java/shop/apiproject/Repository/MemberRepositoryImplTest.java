@@ -6,6 +6,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import shop.apiproject.Repository.MemberRepository;
 import shop.apiproject.dto.Member;
+
+import java.util.List;
+
 @SpringBootTest
 //@Transactional
 class MemberRepositoryImplTest {
@@ -17,14 +20,34 @@ class MemberRepositoryImplTest {
     void save() {
 
         Member member = new Member();
-        member.setId("97tkddnjs");
-        member.setPass("12345");
+        member.setId("newman");
+        member.setPass("123456");
         member.setName("lee");
         member.setAge(27);
-        member.setEmail("97tkddnjse@naver.com");
+        member.setEmail("lsw@naver.com");
         member.setPhone("01012341234");
 //        System.out.println("ojk");
         System.out.println("member = " + member);
         memberRepository.save(member);
+    }
+
+    @Test
+    void findId() {
+        String id ="97tkddnjs";
+        Member member = memberRepository.findById(id);
+//        System.out.println("ojk");
+        System.out.println("member = " + member);
+//        memberRepository.save(member);
+    }
+
+    @Test
+    void findList() {
+
+        List<Member> all = memberRepository.findAll();
+//        System.out.println("ojk");
+        for(Object o: all){
+            System.out.println("o = " + o);
+        }
+//        memberRepository.save(member);
     }
 }

@@ -1,5 +1,6 @@
 package shop.apiproject.Repository;
 
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
@@ -25,6 +26,19 @@ public class MemberRepositoryImpl implements MemberRepository{
         this.dataSource = dataSource;
     }
 
+    private final RowMapper<Member> memberRowMapper = (resultSet, rowNum) -> {
+        Member find_member = new Member();
+        find_member.setNum( resultSet.getInt("num"));
+        find_member.setId(resultSet.getString("id"));
+        find_member.setPass(resultSet.getString("pass"));
+        find_member.setName(resultSet.getString("name"));
+        find_member.setAge(resultSet.getInt("age"));
+        find_member.setEmail(resultSet.getString("email"));
+        find_member.setPhone(resultSet.getString("phone"));
+        find_member.setGrant(resultSet.getString("usergrant"));
+        return find_member;
+    };
+
     @Override
     public Member save(Member member) {
 
@@ -41,7 +55,7 @@ public class MemberRepositoryImpl implements MemberRepository{
         parameters.put("age", member.getAge());
         parameters.put("email", member.getEmail());
         parameters.put("phone", member.getPhone());
-
+        parameters.put("grant", member.getGrant());
         Number num = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
         System.out.println("num = " + num);
         member.setNum(num.intValue());
@@ -51,13 +65,17 @@ public class MemberRepositoryImpl implements MemberRepository{
     }
 
     @Override
-    public Member findById(Long id) {
-
-        return null;
+    public Member findById(String id) {
+        String SQL ="select * from member where id=?";
+        // query()
+        //Querying and returning multiple objects(여러 개 객체)
+        Member member = jdbcTemplate.queryForObject(SQL, memberRowMapper, id);
+        return member;
     }
 
     @Override
     public List<Member> findAll() {
-        return null;
+        String SQL ="select * from member";
+        return this.jdbcTemplate.query(SQL,memberRowMapper);
     }
 }

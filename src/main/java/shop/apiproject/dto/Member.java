@@ -5,10 +5,11 @@ import lombok.Data;
 @Data
 public class Member {
 
-    private int num;
+    @NotEmpty
+    private int num; //
 
     @NotEmpty
-    private String id; // 사용자 id
+    private String id; // pk 사용자 id
 
     @NotEmpty
     private String pass; // 사용자 비번
@@ -21,5 +22,7 @@ public class Member {
     private String email;
 
     private String phone;
+
+    private String grant;
 
 }
