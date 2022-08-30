@@ -15,8 +15,8 @@ create table contents(
 
                          contentnum int primary key,
                          id varchar(20) not null,
-                         title varchar(20) not null,
-                         content varchar(20) not null,
+                         title varchar(100) not null,
+                         content varchar(1000) not null,
                          contentdate datetime not null,
                          contentempathy int not null,
                          foreign key (id) references member(id) on delete cascade on update cascade
@@ -27,7 +27,7 @@ create table comments(
                          commentnum int primary key,
                          contentnum int not null,
                          id varchar(20) not null,
-                         comments varchar(20) not null,
+                         comments varchar(100) not null,
                          commentsdate datetime not null,
                          contentempathy int not null,
                          foreign key (id) references member(id) on delete cascade on update cascade,

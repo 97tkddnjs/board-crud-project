@@ -69,6 +69,7 @@ public class MemberRepositoryImpl implements MemberRepository{
         String SQL ="select * from member where id=?";
         // query()
         //Querying and returning multiple objects(여러 개 객체)
+        // 밑에건느 하나만 조회~~
         Member member = jdbcTemplate.queryForObject(SQL, memberRowMapper, id);
         return member;
     }

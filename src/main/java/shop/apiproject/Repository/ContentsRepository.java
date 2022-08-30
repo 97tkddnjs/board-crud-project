@@ -1,11 +1,20 @@
 package shop.apiproject.Repository;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import shop.apiproject.dto.Contents;
 import shop.apiproject.dto.Member;
 
 import javax.sql.DataSource;
+import java.time.Clock;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ContentsRepository {
@@ -25,21 +34,85 @@ public class ContentsRepository {
         this.dataSource = dataSource;
     }
 
-    // 저장은 해야지 ㅜㅜ
+    private final RowMapper<Contents> contentsRowMapper = (resultSet, rowNum) -> {
+        Contents find_contents = new Contents();
+        find_contents.setContentnum(resultSet.getInt("contentnum"));
+        find_contents.setId(resultSet.getString("id"));
+        find_contents.setTitle(resultSet.getString("title"));
+        find_contents.setContents(resultSet.getString("contents"));
+        // jdbc templates에서 mysql의 LocalDateTime 을 java의 DateTime 으로 바꾸는 방법
+        find_contents.setDate(resultSet.getTimestamp("date").toLocalDateTime());
+        find_contents.setEmpathy(resultSet.getInt("empathy"));
+
+        return find_contents;
+    };
+
+    // 저장 create
     public Contents save(Contents contents) {
 
-        return null;
+        SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+
+        jdbcInsert.withTableName("contents").usingGeneratedKeyColumns("num");
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("id", contents.getId());
+        parameters.put("title", contents.getTitle());
+        parameters.put("contents", contents.getContents());
+        parameters.put("date", contents.getDate());
+        parameters.put("empathy", contents.getEmpathy());
+
+        Number num = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
+        contents.setContentnum(num.intValue());
+        return contents;
     }
+
+    /*
+     *  retrival 영역
+     *  조회는 전부 조회, id로 조회, 제목으로 조회. 콘텐츠로 조회가 있다~
+     */
     // 모두 조회~
+    public List<Contents> findAll() {
+        String SQL = "select * from contents";
+        return this.jdbcTemplate.query(SQL,contentsRowMapper);
+    }
+
 
     // 회원 ID로 조회~~
-
+    public Contents findById(String id) {
+        String SQL = "select * from contents where id =?";
+        Contents contents = jdbcTemplate.queryForObject(SQL, contentsRowMapper, id);
+        return contents;
+    }
     // title로 조회~
-
-    //날짜로 조회~~
+    public List<Contents> findByTitle(String title) {
+        String SQL = "select * from contents where title like ?";
+        return this.jdbcTemplate.query(SQL, contentsRowMapper, "%"+title+"%");
+    }
 
     //contents에 잇는 내용 중 문자열로 검색~
+    public List<Contents> findByContents(String contetnts) {
+        String SQL = "select * from contents where contents like ?";
+        return this.jdbcTemplate.query(SQL, contentsRowMapper, "%"+contetnts+"%");
+    }
 
+    /*
+    *  update 부분 수정을 위한 부분이랄까나 ^.^
+    * */
+    // 수정시 날짜도 바꾸는 게 맞나? 인데 맞지~
+    public void update(Contents contents){
+        // mysql DB의 DateTime과 자바의 localdatetime은 다름 따라서 다음과 같은 형식으로 변환이 필요
+        Clock clock;
+        DateTimeFormatter DB_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String SQL = " UPDATE contents " +
+                "SET title = ?" +
+                "contents = ?" +
+                "date = ?";
 
+        String nowtime = LocalDateTime.now().format(DB_TIME_FORMAT);
+        this.jdbcTemplate.update(SQL,
+                contents.getTitle(),
+                contents.getContents(),
+                nowtime
+        );
+    }
 
 }

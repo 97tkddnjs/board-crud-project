@@ -10,7 +10,7 @@ import shop.apiproject.dto.Member;
 import java.util.List;
 
 @SpringBootTest
-//@Transactional
+@Transactional
 class MemberRepositoryImplTest {
 
     @Autowired
@@ -20,7 +20,7 @@ class MemberRepositoryImplTest {
     void save() {
 
         Member member = new Member();
-        member.setId("newman");
+        member.setId("boy");
         member.setPass("123456");
         member.setName("lee");
         member.setAge(27);
@@ -28,7 +28,8 @@ class MemberRepositoryImplTest {
         member.setPhone("01012341234");
 //        System.out.println("ojk");
         System.out.println("member = " + member);
-        memberRepository.save(member);
+        Member save = memberRepository.save(member);
+        System.out.println("save = " + save);
     }
 
     @Test
