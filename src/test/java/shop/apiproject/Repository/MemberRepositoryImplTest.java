@@ -46,7 +46,7 @@ class MemberRepositoryImplTest {
 
         List<Member> all = memberRepository.findAll();
 //        System.out.println("ojk");
-        for(Object o: all){
+        for(Member o: all){
             System.out.println("o = " + o);
         }
 //        memberRepository.save(member);

@@ -70,13 +70,22 @@ public class MemberRepositoryImpl implements MemberRepository{
         // query()
         //Querying and returning multiple objects(여러 개 객체)
         // 밑에건느 하나만 조회~~
-        Member member = jdbcTemplate.queryForObject(SQL, memberRowMapper, id);
-        return member;
+        try {
+            Member member = jdbcTemplate.queryForObject(SQL, memberRowMapper, id);
+            System.out.println("member = " + member);
+            return member;
+        }catch (Exception e){
+            return null;
+        }
     }
 
     @Override
     public List<Member> findAll() {
         String SQL ="select * from member";
-        return this.jdbcTemplate.query(SQL,memberRowMapper);
+        try{
+            return this.jdbcTemplate.query(SQL,memberRowMapper);
+        }catch (Exception e){
+            return null;
+        }
     }
 }

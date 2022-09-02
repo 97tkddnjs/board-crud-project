@@ -51,7 +51,7 @@ public class ContentsRepository {
 
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
 
-        jdbcInsert.withTableName("contents").usingGeneratedKeyColumns("num");
+        jdbcInsert.withTableName("contents").usingGeneratedKeyColumns("contentnum");
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("id", contents.getId());
         parameters.put("title", contents.getTitle());
@@ -112,6 +112,15 @@ public class ContentsRepository {
                 contents.getContents(),
                 nowtime
         );
+    }
+
+    /*
+     * Delete
+     *
+     */
+    public void delete(int num) {
+        String SQL ="DELETE FROM contents WHERE contentnum = ?";
+        this.jdbcTemplate.update(SQL, num);
     }
 
 }
