@@ -1,4 +1,4 @@
-package shop.apiproject.dto;
+package board.apiproject.dto;
 
 
 import lombok.Data;

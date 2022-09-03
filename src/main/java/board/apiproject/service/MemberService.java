@@ -1,12 +1,11 @@
-package shop.apiproject.service;
+package board.apiproject.service;
 
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import shop.apiproject.Repository.MemberRepository;
-import shop.apiproject.dto.Member;
+import board.apiproject.Repository.MemberRepository;
+import board.apiproject.dto.Member;
 
 
 @Transactional

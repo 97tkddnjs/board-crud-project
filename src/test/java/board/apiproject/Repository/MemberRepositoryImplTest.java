@@ -1,11 +1,10 @@
-package shop.apiproject.Repository;
+package board.apiproject.Repository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-import shop.apiproject.Repository.MemberRepository;
-import shop.apiproject.dto.Member;
+import board.apiproject.dto.Member;
 
 import java.util.List;
 

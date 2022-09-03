@@ -1,4 +1,4 @@
-package shop.apiproject;
+package board.apiproject;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

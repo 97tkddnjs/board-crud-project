@@ -1,10 +1,10 @@
-package shop.apiproject.Repository;
+package board.apiproject.Repository;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
-import shop.apiproject.dto.Member;
+import board.apiproject.dto.Member;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;

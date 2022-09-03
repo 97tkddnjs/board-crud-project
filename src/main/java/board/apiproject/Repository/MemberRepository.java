@@ -1,6 +1,6 @@
-package shop.apiproject.Repository;
+package board.apiproject.Repository;
 
-import shop.apiproject.dto.Member;
+import board.apiproject.dto.Member;
 
 import java.util.List;
 

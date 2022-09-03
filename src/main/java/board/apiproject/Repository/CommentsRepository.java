@@ -1,4 +1,4 @@
-package shop.apiproject.Repository;
+package board.apiproject.Repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
-import shop.apiproject.dto.Comments;
+import board.apiproject.dto.Comments;
 
 
 import javax.sql.DataSource;
