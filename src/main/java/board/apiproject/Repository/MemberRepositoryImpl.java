@@ -21,7 +21,7 @@ public class MemberRepositoryImpl implements MemberRepository{
 
 //    @Autowired
     public MemberRepositoryImpl(DataSource dataSource) {
-        System.out.println("conse");
+
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.dataSource = dataSource;
     }
@@ -42,7 +42,6 @@ public class MemberRepositoryImpl implements MemberRepository{
     @Override
     public Member save(Member member) {
 
-        System.out.println("here");
 
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
 
