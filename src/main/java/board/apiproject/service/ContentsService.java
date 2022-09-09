@@ -34,7 +34,8 @@ public class ContentsService {
     // 모든 게시글 조회(기본으로 최신 날짜별로)
     public List<Contents> retrivalAll(){
         List<Contents> all = contentsRepository.findAll();
-        Collections.sort(all, Collections.reverseOrder());
+        Collections.sort(all, (o1, o2)
+                -> (new Integer (o2.getContentnum()).compareTo(new Integer(o1.getContentnum() ) ) ));
         return all;
     }
 

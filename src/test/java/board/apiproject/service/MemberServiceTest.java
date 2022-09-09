@@ -69,12 +69,11 @@ class MemberServiceTest {
 
         contentsService.create(contents2);
 
-        contentsRepository.findAll();
-//        List<Contents> contents = contentsService.retrivalAll();
-//
-//        for (Object o : contents) {
-//            System.out.println("o = " + o);
-//        }
+        List<Contents> contents = contentsService.retrivalAll();
+
+        for (Object o : contents) {
+            System.out.println("o = " + o);
+        }
 
     }
 }
