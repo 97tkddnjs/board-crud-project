@@ -13,7 +13,7 @@ create table member(
 
 create table contents(
 
-                         contentnum int primary key,
+                         contentnum int primary key auto_increment,
                          id varchar(20) not null,
                          title varchar(100) not null,
                          content varchar(1000) not null,
@@ -24,7 +24,7 @@ create table contents(
 
 create table comments(
 
-                         commentnum int primary key,
+                         commentnum int primary key auto_increment,
                          contentnum int not null,
                          id varchar(20) not null,
                          comments varchar(100) not null,

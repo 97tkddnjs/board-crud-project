@@ -23,7 +23,6 @@ public class Comments {
     @Range(min=1 , max =100)
     private String comments;
 
-    @NotNull
     private LocalDateTime date;
 
     private int comments_empathy;

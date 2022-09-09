@@ -13,10 +13,10 @@ import java.time.LocalDateTime;
 @Data
 public class Contents {
 
-    @NotNull
+    //@NotEmpty
     private int contentnum; // pk
 
-    @NotEmpty
+    //@NotEmpty
     private String id; // fk 사용자 id
 
     @NotNull
@@ -27,7 +27,7 @@ public class Contents {
     @Range(min =1 ,max=1000)
     private String contents;
 
-    @NotNull
+
     private LocalDateTime date;
 
     private int empathy;

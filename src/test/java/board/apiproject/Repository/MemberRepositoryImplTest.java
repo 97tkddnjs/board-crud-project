@@ -1,5 +1,7 @@
 package board.apiproject.Repository;
 
+import board.apiproject.dto.Contents;
+import board.apiproject.service.MemberService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +16,9 @@ class MemberRepositoryImplTest {
 
     @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private MemberService memberService;
 
     @Test
     void save() {
@@ -50,4 +55,6 @@ class MemberRepositoryImplTest {
         }
 //        memberRepository.save(member);
     }
+
+
 }

@@ -6,6 +6,7 @@ import board.apiproject.dto.Contents;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class ContentsService {
     *  Create
     * */
     public void create(Contents contents){
+        System.out.println("Service contents = " + contents);
         contentsRepository.save(contents);
     }
 
@@ -32,9 +34,8 @@ public class ContentsService {
     // 모든 게시글 조회(기본으로 최신 날짜별로)
     public List<Contents> retrivalAll(){
         List<Contents> all = contentsRepository.findAll();
-//        Collections.sort(all,
-//                (o1, o2) -> o1.getLastModified().compareTo(o2.getLastModified()));
-        return null;
+        Collections.sort(all, Collections.reverseOrder());
+        return all;
     }
 
     // 게시글 공감수 정렬

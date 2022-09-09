@@ -38,10 +38,10 @@ public class ContentsRepository {
         find_contents.setContentnum(resultSet.getInt("contentnum"));
         find_contents.setId(resultSet.getString("id"));
         find_contents.setTitle(resultSet.getString("title"));
-        find_contents.setContents(resultSet.getString("contents"));
+        find_contents.setContents(resultSet.getString("content"));
         // jdbc templates에서 mysql의 LocalDateTime 을 java의 DateTime 으로 바꾸는 방법
-        find_contents.setDate(resultSet.getTimestamp("date").toLocalDateTime());
-        find_contents.setEmpathy(resultSet.getInt("empathy"));
+        find_contents.setDate(resultSet.getTimestamp("contentdate").toLocalDateTime());
+        find_contents.setEmpathy(resultSet.getInt("contentempathy"));
 
         return find_contents;
     };
@@ -51,15 +51,26 @@ public class ContentsRepository {
 
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
 
+        System.out.println("Repository contents = " + contents);
+
         jdbcInsert.withTableName("contents").usingGeneratedKeyColumns("contentnum");
+
+
+        Clock clock;
+        DateTimeFormatter DB_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String nowtime = LocalDateTime.now().format(DB_TIME_FORMAT);
+
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("id", contents.getId());
         parameters.put("title", contents.getTitle());
-        parameters.put("contents", contents.getContents());
-        parameters.put("date", contents.getDate());
-        parameters.put("empathy", contents.getEmpathy());
+        parameters.put("content", contents.getContents());
+        parameters.put("contentdate", nowtime);
+        parameters.put("contentempathy", contents.getEmpathy());
 
-        Number num = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource(parameters);
+        System.out.println("mapSqlParameterSource = " + mapSqlParameterSource);
+        Number num = jdbcInsert.executeAndReturnKey(mapSqlParameterSource);
+        System.out.println("num = " + num);
         contents.setContentnum(num.intValue());
         return contents;
     }
@@ -71,6 +82,7 @@ public class ContentsRepository {
     // 모두 조회~
     public List<Contents> findAll() {
         String SQL = "select * from contents";
+
         return this.jdbcTemplate.query(SQL,contentsRowMapper);
     }
 
