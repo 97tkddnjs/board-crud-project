@@ -49,13 +49,13 @@ public class ContentsService {
 
     // 게시글 검색
     //1. title로 조회
-    public List<Contents> titleRetrival(Contents title) {
-        return null;
+    public List<Contents> titleRetrival(String title) {
+        return contentsRepository.findByTitle(title);
     }
 
     //2. contents 내용으로 조회
-    public List<Contents> contentsRetrival(Contents contents){
-        return null;
+    public List<Contents> contentsRetrival(String contents){
+        return contentsRepository.findByContents(contents);
     }
 
     /**
@@ -65,13 +65,11 @@ public class ContentsService {
     //수정
     // contents는 내용만 변경 가능~
     public void contentsUpdate(Contents contents){
-
+        contentsRepository.update(contents);
     }
-
 
     // delete 하기
     public void deleteContents(Contents contents){
-
-
+        contentsRepository.delete(contents.getContentnum());
     }
 }
