@@ -16,22 +16,13 @@
     </style>
 </head>
 <body>
+
+<!-- 네비게이션바 -->
 <nav th:replace="navbar :: navbarFragment"></nav>
- for list page
-<table class="table">
-    <thead>
-        <tr>
-            <th th:text="#{label.contents.contentnum}">num</th>
-            <th th:text="#{label.contents.title}">제목</th>
-            <th th:text="#{label.contents.id}">작성자</th>
-            <th th:text="#{label.contents.date}">날짜</th>
-        </tr>
-    </thead>
-    <tbody>
+<!-- 기본 템플릿 안에 삽입될 내용 Start -->
+<th:block layout:fragment="content"></th:block>
+<!-- 기본 템플릿 안에 삽입될 내용 End -->
+<script th:src="@{/js/bootstrap.min.js}"></script>
 
-    </tbody>
-</table>
 </body>
-
-</div>
 </html>

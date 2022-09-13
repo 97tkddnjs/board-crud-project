@@ -20,4 +20,9 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/list")
+    public String list(){
+        return "list";
+    }
+
 }
