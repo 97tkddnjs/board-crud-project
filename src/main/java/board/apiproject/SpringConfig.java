@@ -1,12 +1,13 @@
 package board.apiproject;
 //
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.context.annotation.ComponentScan;
-//import shop.Repository.MemberRepositoryImpl;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import shop.Repository.MemberRepository;
-////import org.apache.tomcat.jdbc.pool.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+//import org.apache.tomcat.jdbc.pool.DataSource;
 //
 //import javax.sql.DataSource;
 ////
@@ -29,9 +30,8 @@ package board.apiproject;
 //
 //}
 
-//@Configuration
-//@ComponentScan
-public class SpringConfig {
+@Configuration
+public class SpringConfig implements WebMvcConfigurer {
 
 
     //    jdbc에서 필요한 것들
