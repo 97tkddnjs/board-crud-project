@@ -11,14 +11,14 @@
     <title>Website!</title>
     <style>
         .container {
-            max-width: 560px;
+            max-width: 600px;
         }
     </style>
 </head>
 <body>
 <nav th:replace="navbar :: navbarFragment"></nav>
- for list page
-<table class="table">
+
+<table class="table container">
     <thead>
         <tr>
             <th th:text="#{label.contents.contentnum}">num</th>
