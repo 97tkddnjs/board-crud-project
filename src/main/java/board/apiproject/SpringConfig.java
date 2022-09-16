@@ -5,80 +5,25 @@ import org.springframework.context.annotation.ComponentScan;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-//import org.apache.tomcat.jdbc.pool.DataSource;
-//
-//import javax.sql.DataSource;
-////
-//@Configuration
-////@ComponentScan
-//public class SpringConfig {
-//
-//    private final DataSource dataSource;
-//
-//    public SpringConfig(DataSource dataSource) {
-//        this.dataSource = dataSource;
-//    }
-//
-//
-//    @Bean
-//    public MemberRepository memberRepository() {
-//// return new MemoryMemberRepository();
-//        return new MemberRepositoryImpl(dataSource);
-//    }
-//
-//}
 
 @Configuration
 public class SpringConfig implements WebMvcConfigurer {
 
-
-    //    jdbc에서 필요한 것들
-//    private DataSource dataSource;
+    // 인터셉트를 통한 로그인 관리!
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(new LogInterceptor())
+//                .order(1)
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/css/**", "/*.ico","/error");
 //
-//    @Autowired
-//    public SpringConfig(DataSource dataSource) {
-//        this.dataSource = dataSource;
-//    }
+//        registry.addInterceptor(new LoginCheckInterceptor())
+//                .order(2)
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/","/members/add", "/login","/logout",
+//                        "/css/**", "/*.ico", "/error");
+    }
 
-
-
-    //jpa에 필요한 것들
-//    private final DataSource dataSource;
-//    private final EntityManager em;
-//
-//    @Autowired
-//    public SpringConfig(DataSource dataSource, EntityManager em) {
-//        this.dataSource = dataSource;
-//        this.em = em;
-//    }
-    //spring jpa
-
-//    private final MemberRepository memberRepository;
-
-    //    @Autowired // 생성자가 하나면 생략되도 되긴 하다.
-//    public SpringConfig(MemberRepository memberRepository) {
-//        this.memberRepository = memberRepository;
-//    }
-//    //jpa 까진
-//    @Bean
-//    public MemberService memberService() {
-//        return new MemberService(memberRepository());
-//    }
-    //    @Bean
-//    public MemberService memberService() {
-//        return new MemberService(memberRepository);
-//    }
-//    @Bean
-//    public TimeTraceAop timeTraceAop() {
-//        return new TimeTraceAop();
-//    }
-//    @Bean
-//    public MemberRepository memberRepository() {
-//        //return new JdbcMemberRepository(dataSource);
-//        return new JdbcTemplateMemberRepository(dataSource);
-////        return new JpaMemberRepository(em);
-//
-//    }
 }
