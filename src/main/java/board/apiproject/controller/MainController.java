@@ -1,5 +1,6 @@
 package board.apiproject.controller;
 
+import board.apiproject.SessionConst;
 import board.apiproject.dto.Contents;
 import board.apiproject.dto.Member;
 import board.apiproject.dto.valid.ContentsForm;
@@ -11,10 +12,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -47,6 +51,23 @@ public class MainController {
     public String addList(@ModelAttribute("contentsForm") ContentsForm contentsForm) {
 
         return "contents/addlist";
+    }
+
+    @PostMapping("/list/add")
+    public String addListForm(@Validated @ModelAttribute("contentsForm") ContentsForm contentsForm
+    , BindingResult bindingResult, HttpServletRequest request) {
+
+        // 세션 객체를 하나 만들고
+        HttpSession session = request.getSession();
+        // 세션 정보를 가져오고!
+        Member loginId = (Member)session.getAttribute(SessionConst.LOGIN_MEMBER);
+
+        Contents contents = new Contents();
+        contents.setContents(contentsForm.getContents());
+        contents.setId(loginId.getId());
+        contents.setTitle(contentsForm.getTitle());
+        contentsService.create(contents);
+        return "redirect:/list";
     }
 
     @GetMapping("/signup")
