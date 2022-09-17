@@ -17,8 +17,8 @@
 </head>
 <body>
 <nav th:replace="navbar :: navbarFragment"></nav>
-
-<table class="table container">
+<div class ="container">
+<table class="table">
     <thead>
         <tr>
             <th th:text="#{label.contents.contentnum}">num</th>
@@ -28,9 +28,24 @@
         </tr>
     </thead>
     <tbody>
+    <tr th:each="content : ${contents}">
+        <td th:text="${content.contentnum}"></td>
+        <td th:text="${content.title}"></td>
+        <td th:text="${content.id}"></td>
+        <td th:text="${content.date}"></td>
 
+    </tr>
     </tbody>
 </table>
+<div class="row">
+    <div class="col">
+        <button class="btn btn-primary float-end"
+                onclick="location.href='addlist.html.html'"
+                th:onclick="|location.href='@{/list/add}'|"
+                type="button" th:text="#{page.addContents}">상품 등록</button>
+    </div>
+</div>
+</div>
 </body>
 
 </div>

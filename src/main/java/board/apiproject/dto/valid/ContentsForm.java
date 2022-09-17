@@ -1,4 +1,4 @@
-package board.apiproject.dto;
+package board.apiproject.dto.valid;
 
 
 import lombok.Data;
@@ -8,28 +8,24 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
-
-
 @Data
-public class Contents {
-
+public class ContentsForm {
     //@NotEmpty
     private int contentnum; // pk
 
-    //@NotEmpty
+    @NotEmpty
     private String id; // fk 사용자 id
 
-//    @NotNull
-//    @Range(min =1 ,max=100)
+    @NotNull
+    @Range(min =1 ,max=100)
     private String title;
 
-//    @NotNull
-//    @Range(min =1 ,max=1000)
+    @NotNull
+    @Range(min =1 ,max=1000)
     private String contents;
 
 
     private LocalDateTime date;
 
     private int empathy;
-
 }

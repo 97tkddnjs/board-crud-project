@@ -2,6 +2,7 @@ package board.apiproject.interceptor;
 
 
 import board.apiproject.SessionConst;
+import board.apiproject.dto.Member;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -27,14 +28,17 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 
         HttpSession session = request.getSession();
 
-        if (session == null || session.getAttribute(SessionConst.LOGIN_MEMBER) == null) {
+        Object attribute = session.getAttribute(SessionConst.LOGIN_MEMBER);
+        if (session == null || attribute == null) {
             log.info("미인증 사용자 요청");
             //로그인으로 redirect;
 
             response.sendRedirect("/login?redirectURL=" + requestURI);
             return false;
         }
-
+        Member attribute1 = (Member) attribute;
+        log.info("login session 정보 입니다 1~ {}", session);
+        log.info("login session 정보 입니다 2~ {}", attribute1.getId());
         return true;
     }
 }

@@ -1,17 +1,22 @@
 package board.apiproject.controller;
 
+import board.apiproject.dto.Contents;
 import board.apiproject.dto.Member;
+import board.apiproject.dto.valid.ContentsForm;
 import board.apiproject.dto.valid.MemberForm;
+import board.apiproject.service.ContentsService;
 import board.apiproject.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
@@ -19,6 +24,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class MainController {
     private final MemberService memberService;
+    private final ContentsService contentsService;
     @GetMapping("/")
     public String index(){
         return "index";
@@ -31,10 +37,17 @@ public class MainController {
     }
 
     @GetMapping("/list")
-    public String list(){
+    public String list(Model model){
+        List<Contents> contents = contentsService.retrivalAll();
+        model.addAttribute("contents", contents);
         return "contents/list";
     }
 
+    @GetMapping("/list/add")
+    public String addList(@ModelAttribute("contentsForm") ContentsForm contentsForm) {
+
+        return "contents/addlist";
+    }
 
     @GetMapping("/signup")
     public String sign(@ModelAttribute("member") MemberForm member){
