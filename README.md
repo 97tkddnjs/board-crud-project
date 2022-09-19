@@ -17,3 +17,14 @@ RestController을 이용 API 프로젝트를 완성할 예정입니다.
 1. 회원은 생성하면 정보 삭제는 일단 X
 2. 콘텐츠는 생성후 제목은 변경되어질 수 없다.(내용은 변경 가능!)
 3. 댓글은 삭제만 가능하게 -> 일단 수정 X 
+
+
+## 사진
+
+### 처음 / index page
+![image](https://user-images.githubusercontent.com/46413809/190952241-96f26b89-1ce6-4583-8db3-1978ec1b38cb.png)
+![image](https://user-images.githubusercontent.com/46413809/190952271-544a5fc5-1988-4394-a669-ca1680908684.png)
+![image](https://user-images.githubusercontent.com/46413809/190952303-6494840d-ccf3-4d54-a2a4-846ba23278fd.png)
+![image](https://user-images.githubusercontent.com/46413809/190952316-8bf9340a-3727-4142-9e9e-31dd0ec35074.png)
+![image](https://user-images.githubusercontent.com/46413809/190952335-4d009093-59f0-4e96-901b-bc365d01e992.png)
+![image](https://user-images.githubusercontent.com/46413809/190952362-f36671c0-4cd3-4429-8229-5db6d89b6f9b.png)
