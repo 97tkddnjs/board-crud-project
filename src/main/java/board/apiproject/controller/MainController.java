@@ -35,11 +35,12 @@ public class MainController {
     }
 
     @PostMapping("/")
-    public String login() {
+    public String hello() {
 
         return "index";
     }
 
+    // 게시판 관련!
     @GetMapping("/list")
     public String list(Model model){
         List<Contents> contents = contentsService.retrivalAll();
@@ -70,6 +71,7 @@ public class MainController {
         return "redirect:/list";
     }
 
+    // 회원 가입 쪽
     @GetMapping("/signup")
     public String sign(@ModelAttribute("member") MemberForm member){
         return "signup";
