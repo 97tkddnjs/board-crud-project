@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,9 +49,17 @@ public class MainController {
         return "contents/list";
     }
 
+
+    @GetMapping("/list/{contentNum}")
+    public String contentdetail(@PathVariable int contentNum,  Model model){
+        Contents byContentNum = contentsService.findByContentNum(contentNum);
+        model.addAttribute("content", byContentNum);
+        return "contents/contentsDetail";
+    }
+
+
     @GetMapping("/list/add")
     public String addList(@ModelAttribute("contentsForm") ContentsForm contentsForm) {
-
         return "contents/addlist";
     }
 

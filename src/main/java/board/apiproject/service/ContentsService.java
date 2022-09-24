@@ -58,6 +58,9 @@ public class ContentsService {
         return contentsRepository.findByContents(contents);
     }
 
+    public Contents findByContentNum(int num) {
+        return contentsRepository.findByNum(num);
+    }
     /**
      *  Update
      *  id별로 조회

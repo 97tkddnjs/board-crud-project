@@ -85,7 +85,12 @@ public class ContentsRepository {
 
         return this.jdbcTemplate.query(SQL,contentsRowMapper);
     }
-
+    // 회원 ID로 조회~~
+    public Contents findByNum(int num) {
+        String SQL = "select * from contents where contentnum =?";
+        Contents contents = jdbcTemplate.queryForObject(SQL, contentsRowMapper, num);
+        return contents;
+    }
 
     // 회원 ID로 조회~~
     public Contents findById(String id) {

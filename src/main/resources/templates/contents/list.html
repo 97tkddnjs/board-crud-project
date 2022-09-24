@@ -30,7 +30,7 @@
     <tbody>
     <tr th:each="content : ${contents}">
         <td th:text="${content.contentnum}"></td>
-        <td th:text="${content.title}"></td>
+        <td th:href="@{|/list/content.contentnum|}"  th:text="${content.title}"></td>
         <td th:text="${content.id}"></td>
         <td th:text="${content.date}"></td>
 
