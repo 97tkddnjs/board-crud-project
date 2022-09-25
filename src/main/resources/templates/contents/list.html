@@ -30,9 +30,9 @@
     <tbody>
     <tr th:each="content : ${contents}">
         <td th:text="${content.contentnum}"></td>
-        <td th:href="@{|/list/content.contentnum|}"  th:text="${content.title}"></td>
+        <td><a th:href="@{|/list/${content.contentnum}|}"  th:text="${content.title}"></a></td>
         <td th:text="${content.id}"></td>
-        <td th:text="${content.date}"></td>
+        <td th:text="${#temporals.format(content.date, 'yyyy-MM-dd HH:mm')}"></td>
 
     </tr>
     </tbody>
@@ -40,7 +40,7 @@
 <div class="row">
     <div class="col">
         <button class="btn btn-primary float-end"
-                onclick="location.href='addlist.html.html'"
+                onclick="location.href='addlist.html'"
                 th:onclick="|location.href='@{/list/add}'|"
                 type="button" th:text="#{page.addContents}">상품 등록</button>
     </div>

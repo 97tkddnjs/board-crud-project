@@ -1,6 +1,8 @@
 package board.apiproject;
 
+import board.apiproject.service.ContentsService;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ApiProjectApplicationTests {
 
 
+	@Autowired
+	private ContentsService contentsService;
 
 //	@Test
 //	void save() {
@@ -28,7 +32,7 @@ class ApiProjectApplicationTests {
 //	}
 
 	@Test
-	void contextLoads() {
+	void contents() {
 
 
 

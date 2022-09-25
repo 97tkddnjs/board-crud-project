@@ -58,6 +58,14 @@ public class MainController {
     }
 
 
+    @GetMapping("/list/{contentNum}/edit")
+    public String contentedit(@PathVariable int contentNum,  Model model){
+        Contents byContentNum = contentsService.findByContentNum(contentNum);
+        model.addAttribute("content", byContentNum);
+        return "contents/editContents";
+    }
+
+
     @GetMapping("/list/add")
     public String addList(@ModelAttribute("contentsForm") ContentsForm contentsForm) {
         return "contents/addlist";
@@ -66,6 +74,11 @@ public class MainController {
     @PostMapping("/list/add")
     public String addListForm(@Validated @ModelAttribute("contentsForm") ContentsForm contentsForm
     , BindingResult bindingResult, HttpServletRequest request) {
+
+        if (bindingResult.hasErrors()) {
+            log.info("errors={}", bindingResult);
+            return "contents/addlist";
+        }
 
         // 세션 객체를 하나 만들고
         HttpSession session = request.getSession();

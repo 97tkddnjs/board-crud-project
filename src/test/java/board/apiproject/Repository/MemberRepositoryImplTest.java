@@ -16,6 +16,8 @@ class MemberRepositoryImplTest {
 
     @Autowired
     private MemberRepository memberRepository;
+    @Autowired
+    private ContentsRepository contentsRepository;
 
     @Autowired
     private MemberService memberService;
@@ -54,6 +56,14 @@ class MemberRepositoryImplTest {
             System.out.println("o = " + o);
         }
 //        memberRepository.save(member);
+    }
+
+    @Test
+    void test() {
+        List<Contents> all = contentsRepository.findAll();
+        for (Contents contents : all) {
+            System.out.println("contents = " + contents);
+        }
     }
 
 

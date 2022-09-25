@@ -39,6 +39,7 @@ public class ContentsRepository {
         find_contents.setId(resultSet.getString("id"));
         find_contents.setTitle(resultSet.getString("title"));
         find_contents.setContents(resultSet.getString("content"));
+
         // jdbc templates에서 mysql의 LocalDateTime 을 java의 DateTime 으로 바꾸는 방법
         find_contents.setDate(resultSet.getTimestamp("contentdate").toLocalDateTime());
         find_contents.setEmpathy(resultSet.getInt("contentempathy"));

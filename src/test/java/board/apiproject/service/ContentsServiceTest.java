@@ -39,4 +39,12 @@ public class ContentsServiceTest {
         }
 //        assertThat()
     }
+
+    @Test
+    public void check() {
+        List<Contents> contents = contentsService.retrivalAll();
+        for (Contents content : contents) {
+            System.out.println("content = " + content);
+        }
+    }
 }
