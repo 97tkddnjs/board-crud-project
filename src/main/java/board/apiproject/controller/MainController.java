@@ -1,10 +1,13 @@
 package board.apiproject.controller;
 
 import board.apiproject.SessionConst;
+import board.apiproject.dto.Comments;
 import board.apiproject.dto.Contents;
 import board.apiproject.dto.Member;
+import board.apiproject.dto.valid.CommentForm;
 import board.apiproject.dto.valid.ContentsForm;
 import board.apiproject.dto.valid.MemberForm;
+import board.apiproject.service.CommentsService;
 import board.apiproject.service.ContentsService;
 import board.apiproject.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +33,9 @@ import java.util.List;
 public class MainController {
     private final MemberService memberService;
     private final ContentsService contentsService;
+
+    private final CommentsService commentsService;
+
     @GetMapping("/")
     public String index(){
         return "index";
@@ -53,17 +59,30 @@ public class MainController {
     @GetMapping("/list/{contentNum}")
     public String contentdetail(@PathVariable int contentNum,  Model model){
         Contents byContentNum = contentsService.findByContentNum(contentNum);
+        List<Comments> comments = commentsService.retrivalByContent(contentNum);
+
+        CommentForm commentForm = new CommentForm();
         model.addAttribute("content", byContentNum);
+        model.addAttribute("comments", comments);
+        model.addAttribute("commentForm", commentForm);
+
         return "contents/contentsDetail";
     }
 
 
     @GetMapping("/list/{contentNum}/edit")
-    public String contentedit(@PathVariable int contentNum,  Model model){
+    public String contentedit( @PathVariable int contentNum, Model model){
         Contents byContentNum = contentsService.findByContentNum(contentNum);
         model.addAttribute("content", byContentNum);
         return "contents/editContents";
     }
+
+//    @PostMapping("/list/{contentNum}/edit")
+//    public String addComments(@ModelAttribute("commentForm")CommentForm commentForm, @PathVariable int contentNum, Model model){
+//        Contents byContentNum = contentsService.findByContentNum(contentNum);
+//        model.addAttribute("content", byContentNum);
+//        return "contents/editContents";
+//    }
 
 
     @GetMapping("/list/add")

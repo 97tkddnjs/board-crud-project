@@ -22,7 +22,7 @@ public class SpringConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginCheckInterceptor())
                 .order(2)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/","/login","/logout",
+                .excludePathPatterns("/","/login","/logout","/signup",
                         "/css/**", "/*.ico", "/error");
     }
 
