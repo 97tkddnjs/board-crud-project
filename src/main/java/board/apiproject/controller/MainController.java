@@ -85,6 +85,8 @@ public class MainController {
 //    }
 
 
+
+
     @GetMapping("/list/add")
     public String addList(@ModelAttribute("contentsForm") ContentsForm contentsForm) {
         return "contents/addlist";
@@ -93,7 +95,7 @@ public class MainController {
     @PostMapping("/list/add")
     public String addListForm(@Validated @ModelAttribute("contentsForm") ContentsForm contentsForm
     , BindingResult bindingResult, HttpServletRequest request) {
-
+        log.info("이것입니다 !! ={}",contentsForm);
         if (bindingResult.hasErrors()) {
             log.info("errors={}", bindingResult);
             return "contents/addlist";
@@ -111,6 +113,33 @@ public class MainController {
         contentsService.create(contents);
         return "redirect:/list";
     }
+
+
+    @PostMapping("/comment/create/{contentNum}")
+    public String commentSave(@Validated @ModelAttribute("commentForm")CommentForm commentForm,
+                               BindingResult bindingResult,@PathVariable int contentNum, HttpServletRequest request){
+        //
+        if (bindingResult.hasErrors()) {
+            log.info("errors={}", bindingResult);
+            return "list/"+contentNum;
+
+        }
+        // 세션 객체를 하나 만들고
+        HttpSession session = request.getSession();
+        // 세션 정보를 가져오고!
+        Member loginId = (Member)session.getAttribute(SessionConst.LOGIN_MEMBER);
+
+        System.out.println("commentform "+commentForm);
+        Comments comment = new Comments();
+        comment.setComments(commentForm.getComments());
+        comment.setId(loginId.getId());
+        comment.setContentnum(contentNum);
+
+        commentsService.create(comment);
+
+        return "redirect:/list/"+contentNum;
+    }
+
 
     // 회원 가입 쪽
     @GetMapping("/signup")

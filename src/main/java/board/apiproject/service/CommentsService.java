@@ -14,6 +14,9 @@ public class CommentsService {
 
     private final CommentsRepository commentsRepository;
 
+    public void create(Comments comments) {
+        commentsRepository.save(comments);
+    }
     public List<Comments> retrivalByContent(int num) {
         return commentsRepository.findByContents(num);
     }

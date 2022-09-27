@@ -51,16 +51,27 @@ public class CommentsRepository {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
 
         jdbcInsert.withTableName("comments").usingGeneratedKeyColumns("commentnum");
+
+        System.out.println("comment "+comments);
+        Clock clock;
+        DateTimeFormatter DB_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String nowtime = LocalDateTime.now().format(DB_TIME_FORMAT);
+
+
+
         Map<String, Object> parameters = new HashMap<>();
 
-        parameters.put("contentnum", comments.getComments());
-        parameters.put("id", comments.getComments() );
+        parameters.put("contentnum", comments.getContentnum());
+        parameters.put("id", comments.getId());
         parameters.put("comments", comments.getComments());
-        parameters.put("commentsdate", comments.getDate());
+        parameters.put("commentsdate", nowtime);
         parameters.put("contentempathy", comments.getComments_empathy());
 
+        System.out.println("afer comment "+comments);
         Number num = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
+        System.out.println("last comment "+comments);
         comments.setContentnum(num.intValue());
+
         return comments;
     }
 

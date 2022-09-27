@@ -2,6 +2,7 @@ package board.apiproject.dto.valid;
 
 
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotEmpty;
@@ -13,15 +14,13 @@ public class ContentsForm {
     //@NotEmpty
     private int contentnum; // pk
 
-    @NotEmpty
-    private String id; // fk 사용자 id
 
     @NotNull
-    @Range(min =1 ,max=100)
+    @Length(min =1 ,max=100)
     private String title;
 
     @NotNull
-    @Range(min =1 ,max=1000)
+    @Length(min =1 ,max=1000)
     private String contents;
 
 

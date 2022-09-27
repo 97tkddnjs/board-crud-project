@@ -52,7 +52,7 @@ public class ContentsRepository {
 
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
 
-        System.out.println("Repository contents = " + contents);
+//        System.out.println("Repository contents = " + contents);
 
         jdbcInsert.withTableName("contents").usingGeneratedKeyColumns("contentnum");
 
@@ -69,9 +69,9 @@ public class ContentsRepository {
         parameters.put("contentempathy", contents.getEmpathy());
 
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource(parameters);
-        System.out.println("mapSqlParameterSource = " + mapSqlParameterSource);
+//        System.out.println("mapSqlParameterSource = " + mapSqlParameterSource);
         Number num = jdbcInsert.executeAndReturnKey(mapSqlParameterSource);
-        System.out.println("num = " + num);
+//        System.out.println("num = " + num);
         contents.setContentnum(num.intValue());
         return contents;
     }
