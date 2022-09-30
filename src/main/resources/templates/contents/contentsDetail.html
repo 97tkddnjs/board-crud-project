@@ -87,14 +87,15 @@
         </div>
     </div>
 
-    <div class ="border-bottom"></div>
+    <div class ="border-bottom">
+    </div>
     <!-- 답변 반복 끝  -->
     <!-- 답변 작성 -->
 
     <form th:action="@{|/comment/create/${content.contentnum}|}" th:object="${commentForm}" method="post" class="my-3">
 <!--        <label name="content" for="content" rows="10" class="form-control"></label>-->
 <!--        <div th:text="${commentForm}">-->
-
+        <h5 class=" my-3 py-2">댓글을 다는 공간입니다.</h5>
 <!--        </div>-->
         <div class="my-3 py-2">
             <label for="content" ></label>
