@@ -24,6 +24,6 @@ thymeleaf를 이용하여 view 단을 구성할 예정이며 spring의 controlle
 ![image](https://user-images.githubusercontent.com/46413809/190952241-96f26b89-1ce6-4583-8db3-1978ec1b38cb.png)
 ![image](https://user-images.githubusercontent.com/46413809/190952271-544a5fc5-1988-4394-a669-ca1680908684.png)
 ![image](https://user-images.githubusercontent.com/46413809/190952303-6494840d-ccf3-4d54-a2a4-846ba23278fd.png)
-![image](https://user-images.githubusercontent.com/46413809/190952316-8bf9340a-3727-4142-9e9e-31dd0ec35074.png)
-![image](https://user-images.githubusercontent.com/46413809/190952335-4d009093-59f0-4e96-901b-bc365d01e992.png)
+![image](https://user-images.githubusercontent.com/46413809/231752481-8c27baed-c056-4c40-b26b-e698a8624741.png)
+![image](https://user-images.githubusercontent.com/46413809/231752551-6deecf58-00b3-48ed-bd0f-74608e594428.png)
 ![image](https://user-images.githubusercontent.com/46413809/190952362-f36671c0-4cd3-4429-8229-5db6d89b6f9b.png)
